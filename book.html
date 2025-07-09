@@ -52,8 +52,8 @@
     }
 
     .logo {
-        width: 77px;
-        height: 65px;
+        width: 60px;
+        height: 60px;
     }
 
     .nav-links {
@@ -141,7 +141,7 @@
             display: block;
             width: 140px;
             height: 70px;
-            background-image: url('./logo\ \(2\).png');
+            background-image: url('./logo3.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -730,7 +730,7 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <img src="logo (2).png" alt="logo" class="logo">
+            <img src="logo3.png" alt="logo" class="logo">
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
@@ -815,6 +815,7 @@
                     <label for="serviceType">Service Required *</label>
                     <select id="serviceType" name="serviceType" required>
                         <option value="">Select a service...</option>
+                        <option value="Fault Finding">Fault Finding</option>
                         <option value="Domestic Installations">Domestic Installations</option>
                         <option value="Commercial Installations">Commercial Installations</option>
                         <option value="Industrial Installations">Industrial Installations</option>
@@ -1004,6 +1005,8 @@ Additional Details: ${details}
                 <div class="footer-section">
                     <h3>Services</h3>
                     <ul>
+                        <li><a href="#">Fault Finding</a></li>
+                        <li><a href="#">PAT Testing & Certification</a></li>
                         <li><a href="#">Domestic Installations</a></li>
                         <li><a href="#">Commercial Installations</a></li>
                         <li><a href="#">Industrial Installations</a></li>
@@ -1030,8 +1033,8 @@ Additional Details: ${details}
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 M & W Electrical Services Limited. All rights reserved. | Registered in England & Wales |
-                    Company No: 12345678 | VAT No: GB123456789</p>
+               <p>&copy; 2024 M & W Electrical Services Limited. All rights reserved. | Registered since 2023 |
+                    Company No: 14936040 | VAT No: 14936040</p>
             </div>
         </div>
     </footer>
@@ -1062,6 +1065,10 @@ Additional Details: ${details}
 
         // Service information mapping
         const serviceInfo = {
+            'Fault Finding':{
+                image: 'fault.avif',
+                description: 'Accurate detection and diagnosis of electrical faults to restore safety and functionality quickly and efficiently in your property.'
+            },
             'Domestic Installations': {
                 image: 'domestic.jpeg',
                 description: 'Expert electrical installations for flats, houses, and apartments, ensuring safety and efficiency for your home.'

@@ -52,8 +52,8 @@
         }
 
         .logo {
-            width: 77px;
-            height: 65px;
+            width: 60px;
+            height: 60px;
         }
 
         .nav-links {
@@ -691,6 +691,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
+            margin-left: 20px;
         }
 
         .footer-section h3 {
@@ -791,7 +792,7 @@
                 display: block;
                 width: 140px;
                 height: 70px;
-                background-image: url('./logo\ \(2\).png');
+                background-image: url('./logo3.png');
                 background-size: contain;
                 background-repeat: no-repeat;
                 background-position: center;
@@ -961,7 +962,7 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <img src="logo (2).png" alt="logo" class="logo">
+            <img src="logo3.png" alt="logo" class="logo">
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="services.html">Services</a></li>
@@ -1013,12 +1014,24 @@
         <div class="container">
             <h2 class="section-title" data-aos="zoom-in"><i class="fas fa-tools"></i> Our Services</h2>
             <div class="services-grid">
+ <div class="service-card" data-aos="zoom-in">
+    <div class="service-icon"><i class="fas fa-bolt fa-2x"></i></div>
+    <h3>Fault Finding</h3>
+    <p>Accurate detection and diagnosis of electrical faults to restore safety and functionality quickly and efficiently in your property.</p>
+</div>
+
                 <div class="service-card" data-aos="zoom-in">
                     <div class="service-icon"><i class="fas fa-home fa-2x"></i></div>
                     <h3>Domestic Installations</h3>
                     <p>Expert electrical installations for flats, houses, and other residential properties, ensuring
                         safe, reliable, and compliant systems tailored to your home.</p>
                 </div>
+                <div class="service-card" data-aos="zoom-in">
+    <div class="service-icon"><i class="fas fa-clipboard-check fa-2x"></i></div>
+    <h3>PAT Testing & Certification</h3>
+    <p>Portable Appliance Testing to ensure electrical equipment is safe, compliant, and functioning correctly in all environments.</p>
+</div>
+
                 <div class="service-card" data-aos="zoom-in">
                     <div class="service-icon"><i class="fas fa-store fa-2x"></i></div>
                     <h3>Commercial Installations</h3>
@@ -1185,6 +1198,7 @@
                 <div class="footer-section">
                     <h3>Services</h3>
                     <ul>
+                        <li><a href="#">Fault Finding</a></li>
                         <li><a href="#">Domestic Installations</a></li>
                         <li><a href="#">Commercial Installations</a></li>
                         <li><a href="#">Industrial Installations</a></li>
@@ -1211,8 +1225,8 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 M & W Electrical Services Limited. All rights reserved. | Registered in England & Wales |
-                    Company No: 12345678 | VAT No: GB123456789</p>
+                <p>&copy; 2024 M & W Electrical Services Limited. All rights reserved. | Registered since 2023 |
+                    Company No: 14936040 | VAT No: 14936040</p>
             </div>
         </div>
     </footer>
@@ -1300,9 +1314,9 @@
         function startCounters() {
             const counterSection = document.querySelector('.counter-section');
             if (isElementInViewport(counterSection)) {
-                animateCounter('clients', 0, 1500, 2000); // 1500 clients
+                animateCounter('clients', 0, 3500, 2000); // 1500 clients
                 animateCounter('projects', 0, 3200, 2000); // 3200 projects
-                animateCounter('experience', 0, 10, 2000); // 10 years
+                animateCounter('experience', 0, 20, 2000); // 10 years
                 window.removeEventListener('scroll', startCounters);
             }
         }

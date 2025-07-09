@@ -1,76 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Services</title>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 <style>
-     * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-          /* Navigation Styles */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #ffffff; /* White background */
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
+    body {
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+        color: #ffffff;
+        overflow-x: hidden;
+    }
 
-        .navbar.scrolled {
-            background: #ffffff; /* Consistent white background when scrolled */
-            padding: 0.5rem 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+    /* Navigation Styles */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        /* White background */
+        z-index: 1000;
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+    }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+    .navbar.scrolled {
+        background: #ffffff;
+        /* Consistent white background when scrolled */
+        padding: 0.5rem 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: #000000;
+        text-decoration: none;
+        font-weight: 550;
+        font-size: 13px;
+        transition: color 0.3s ease;
+        position: relative;
+    }
+
+    .nav-links a:hover {
+        color: #68d391;
+    }
+
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #000000;
+        transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: #000000;
+        margin: 3px 0;
+        transition: 0.3s;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    @media (max-width:786px) {
+        .hamburger {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            width: 77px;
-            height: 65px;
         }
 
         .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
+            position: fixed;
+            top: 0px;
+            left: -100%;
+            width: 70%;
+            height: 2000px;
+            background: rgb(255, 255, 255);
+            color: black;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 4rem;
+            transition: left 0.5s ease;
         }
 
-        .nav-links a {
-            color: #000000;
-            text-decoration: none;
-            font-weight: 550;
-            font-size: 13px;
-            transition: color 0.3s ease;
+        .nav-links::before {
+            content: '';
+            display: block;
+            width: 140px;
+            height: 70px;
+            background-image: url('./logo3.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            top: 1rem;
+            left: 18%;
+            transform: translateX(-50%);
+        }
+
+        .nav-links.active {
+            left: 0;
+        }
+
+        .nav-links li {
             position: relative;
+            left: 25px;
+            top: 50px;
         }
 
-        .nav-links a:hover {
-            color: #68d391;
+        .nav-links li a {
+            font-size: 1.1rem;
+            padding: 0.3rem 0;
+            font-weight: 600;
+            color: rgb(46, 45, 45);
+            border-bottom: 0.5px solid rgba(207, 207, 207, 0.87);
+            display: block;
+        }
+
+        .nav-links li a:hover {
+            color: rgb(46, 45, 45);
+            text-decoration: none;
         }
 
         .nav-links a::after {
@@ -80,361 +183,279 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #000000;
+            background: rgb(255, 255, 255);
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
+    }
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 5px;
-        }
+    .services-section {
+        padding: 60px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #000000;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
+    .section-title {
+        text-align: center;
+        font-size: 36px;
+        color: #2c3e50;
+        margin-bottom: 50px;
+        position: relative;
+        top: 30px;
+    }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
+    .section-title::after {
+        content: '';
+        width: 80px;
+        height: 4px;
+        background-color: #3498db;
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
 
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-        @media (max-width:786px) {
-            .hamburger {
-                display: flex;
-            }
+    .service-card {
+        background-color: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-            .nav-links {
-                position: fixed;
-                top: 0px;
-                left: -100%;
-                width: 70%;
-                height: 2000px;
-                background: rgb(255, 255, 255);
-                color: black;
-                flex-direction: column;
-                justify-content: flex-start;
-                padding-top: 4rem;
-                transition: left 0.5s ease;
-            }
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
 
-            .nav-links::before {
-                content: '';
-                display: block;
-                width: 140px;
-                height: 70px;
-                background-image: url('./logo\ \(2\).png');
-                background-size: contain;
-                background-repeat: no-repeat;
-                background-position: center;
-                position: absolute;
-                top: 1rem;
-                left: 18%;
-                transform: translateX(-50%);
-            }
+    .service-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
 
-            .nav-links.active {
-                left: 0;
-            }
+    .service-content {
+        padding: 25px;
+    }
 
-            .nav-links li {
-                position: relative;
-                left: 25px;
-                top: 50px;
-            }
+    .service-title {
+        font-size: 24px;
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
 
-            .nav-links li a {
-                font-size: 1.1rem;
-                padding: 0.3rem 0;
-                font-weight: 600;
-                color: rgb(46, 45, 45);
-                border-bottom: 0.5px solid rgba(207, 207, 207, 0.87);
-                display: block;
-            }
+    .service-description {
+        font-size: 16px;
+        color: #7f8c8d;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
 
-            .nav-links li a:hover {
-                color: rgb(46, 45, 45);
-                text-decoration: none;
-            }
+    .service-button {
+        display: inline-block;
+        padding: 12px 25px;
+        background-color: #3498db;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+    }
 
-            .nav-links a::after {
-                content: '';
-                position: absolute;
-                bottom: -5px;
-                left: 0;
-                width: 0;
-                height: 2px;
-                background: rgb(255, 255, 255);
-                transition: width 0.3s ease;
-            }
+    .service-button:hover {
+        background-color: #2980b9;
+    }
 
-        }
-          .services-section {
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            color: #2c3e50;
-            margin-bottom: 50px;
-            position: relative;
-            top: 30px;
-        }
-        .section-title::after {
-            content: '';
-            width: 80px;
-            height: 4px;
-            background-color: #3498db;
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+    @media (max-width: 768px) {
         .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .service-card {
-            background-color: #ffffff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-        .service-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .service-content {
-            padding: 25px;
-        }
-        .service-title {
-            font-size: 24px;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-        .service-description {
-            font-size: 16px;
-            color: #7f8c8d;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .service-button {
-            display: inline-block;
-            padding: 12px 25px;
-            background-color: #3498db;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-        }
-        .service-button:hover {
-            background-color: #2980b9;
-        }
-        @media (max-width: 768px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            .section-title {
-                font-size: 28px;
-            }
-        }
-        /* Footer */
-        .footer {
-            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-            color: #fff;
-            padding: 4rem 0 2rem;
-            position: relative;
+            grid-template-columns: 1fr;
         }
 
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.1;
-            z-index: 0;
+        .section-title {
+            font-size: 28px;
+        }
+    }
+
+    /* Footer */
+    .footer {
+        background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        color: #fff;
+        padding: 4rem 0 2rem;
+        position: relative;
+    }
+
+    .footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.1;
+        z-index: 0;
+    }
+
+    .footer .container {
+        position: relative;
+        z-index: 1;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        margin-left: 25px;
+    }
+
+    .footer-section h3 {
+        color: #68d391;
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+    }
+
+    .footer-section ul {
+        list-style: none;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 0.8rem;
+    }
+
+    .footer-section ul li a {
+        color: #cbd5e0;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .footer-section ul li a:hover {
+        color: #68d391;
+        padding-left: 5px;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .social-links a {
+        display: inline-block;
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, #68d391, #38b2ac);
+        color: #1a202c;
+        text-align: center;
+        line-height: 45px;
+        border-radius: 50%;
+        transition: all 0.4s ease;
+        font-weight: bold;
+    }
+
+    .social-links a:hover {
+        background: linear-gradient(135deg, #81e6d9, #4fd1c7);
+        transform: translateY(-3px) rotate(5deg);
+        box-shadow: 0 10px 20px rgba(104, 211, 145, 0.3);
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 2px solid rgba(104, 211, 145, 0.3);
+        margin-top: 3rem;
+        color: #cbd5e0;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
         }
 
-        .footer .container {
-            position: relative;
-            z-index: 1;
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .whatsapp-button {
+        position: fixed;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #25D366;
+        border-radius: 50%;
+        padding: 15px;
+        z-index: 9999;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+    }
+
+    .whatsapp-button:hover {
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .whatsapp-button img {
+        width: 28px;
+        height: 28px;
+        display: block;
+    }
+
+    .scroll-to-top {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: #00c292;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 9999;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        animation: pulse 2s infinite;
+        display: none;
+        /* Hidden by default */
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .scroll-to-top i {
+        pointer-events: none;
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(0, 194, 146, 0.7);
         }
 
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-left: 15px;
+        70% {
+            box-shadow: 0 0 0 15px rgba(0, 194, 146, 0);
         }
 
-        .footer-section h3 {
-            color: #68d391;
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-            font-weight: 700;
+        100% {
+            box-shadow: 0 0 0 0 rgba(0, 194, 146, 0);
         }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-section ul li a {
-            color: #cbd5e0;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .footer-section ul li a:hover {
-            color: #68d391;
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            display: inline-block;
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, #68d391, #38b2ac);
-            color: #1a202c;
-            text-align: center;
-            line-height: 45px;
-            border-radius: 50%;
-            transition: all 0.4s ease;
-            font-weight: bold;
-        }
-
-        .social-links a:hover {
-            background: linear-gradient(135deg, #81e6d9, #4fd1c7);
-            transform: translateY(-3px) rotate(5deg);
-            box-shadow: 0 10px 20px rgba(104, 211, 145, 0.3);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 2px solid rgba(104, 211, 145, 0.3);
-            margin-top: 3rem;
-            color: #cbd5e0;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .whatsapp-button {
-            position: fixed;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: #25D366;
-            border-radius: 50%;
-            padding: 15px;
-            z-index: 9999;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .whatsapp-button:hover {
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .whatsapp-button img {
-            width: 28px;
-            height: 28px;
-            display: block;
-        }
-
-        .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: #00c292;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            z-index: 9999;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-            animation: pulse 2s infinite;
-            display: none;
-            /* Hidden by default */
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .scroll-to-top i {
-            pointer-events: none;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(0, 194, 146, 0.7);
-            }
-
-            70% {
-                box-shadow: 0 0 0 15px rgba(0, 194, 146, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(0, 194, 146, 0);
-            }
-        }
+    }
 </style>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <img src="logo (2).png" alt="logo" class="logo">
+            <img src="logo3.png" alt="logo" class="logo">
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
@@ -455,11 +476,23 @@
         <div class="services-grid">
             <!-- Domestic Installations -->
             <div class="service-card" data-aos="zoom-in">
+                <img src="fault.avif" alt="Domestic Installations">
+                <div class="service-content">
+                    <h3 class="service-title">Fault Finding</h3>
+                    <p class="service-description">Accurate detection and diagnosis of electrical faults to restore safety and functionality quickly and efficiently in your property.</p>
+                    <a href="javascript:void(0)" class="service-button"
+                        onclick="bookService('Fault Finding')">Discover More</a>
+                </div>
+            </div>
+            <!-- Domestic Installations -->
+            <div class="service-card" data-aos="zoom-in">
                 <img src="domestic.jpeg" alt="Domestic Installations">
                 <div class="service-content">
                     <h3 class="service-title">Domestic Installations</h3>
-                    <p class="service-description">Expert electrical installations for flats, houses, and apartments, ensuring safety and efficiency for your home.</p>
-                    <a href="javascript:void(0)" class="service-button" onclick="bookService('Domestic Installations')">Discover More</a>
+                    <p class="service-description">Expert electrical installations for flats, houses, and apartments,
+                        ensuring safety and efficiency for your home.</p>
+                    <a href="javascript:void(0)" class="service-button"
+                        onclick="bookService('Domestic Installations')">Discover More</a>
                 </div>
             </div>
             <!-- Commercial Installations -->
@@ -467,8 +500,10 @@
                 <img src="commercial.jpeg" alt="Commercial Installations">
                 <div class="service-content">
                     <h3 class="service-title">Commercial Installations</h3>
-                    <p class="service-description">Tailored electrical solutions for shops, restaurants, hotels, and offices, designed for reliability and performance.</p>
-                    <a href="javascript:void(0)" class="service-button" onclick="bookService('Commercial Installations')">Discover More</a>
+                    <p class="service-description">Tailored electrical solutions for shops, restaurants, hotels, and
+                        offices, designed for reliability and performance.</p>
+                    <a href="javascript:void(0)" class="service-button"
+                        onclick="bookService('Commercial Installations')">Discover More</a>
                 </div>
             </div>
             <!-- Industrial Installations -->
@@ -476,8 +511,10 @@
                 <img src="industrial.jpeg" alt="Industrial Installations">
                 <div class="service-content">
                     <h3 class="service-title">Industrial Installations</h3>
-                    <p class="service-description">Robust electrical systems for factories and industrial facilities, built to handle high-demand environments.</p>
-                    <a href="javascript:void(0)" class="service-button" onclick="bookService('Industrial Installations')">Discover More</a>
+                    <p class="service-description">Robust electrical systems for factories and industrial facilities,
+                        built to handle high-demand environments.</p>
+                    <a href="javascript:void(0)" class="service-button"
+                        onclick="bookService('Industrial Installations')">Discover More</a>
                 </div>
             </div>
             <!-- Electric report -->
@@ -486,9 +523,11 @@
                 <div class="service-content">
                     <h3 class="service-title">Electrical Installation Condition Report</h3>
                     <p class="service-description">
-                        Comprehensive inspection of your property's wiring and systems to detect faults, damage, or safety issues as per regulations.
+                        Comprehensive inspection of your property's wiring and systems to detect faults, damage, or
+                        safety issues as per regulations.
                     </p>
-                    <a href="javascript:void(0)" class="service-button" onclick="bookService('Electrical Installation Condition Report')">Discover More</a>
+                    <a href="javascript:void(0)" class="service-button"
+                        onclick="bookService('Electrical Installation Condition Report')">Discover More</a>
                 </div>
             </div>
 
@@ -497,8 +536,10 @@
                 <img src="fire alarm.jpeg" alt="Fire Alarm Installation">
                 <div class="service-content">
                     <h3 class="service-title">Fire Alarm Installation</h3>
-                    <p class="service-description">Advanced fire alarm systems installed to protect your property and ensure rapid response in emergencies.</p>
-                    <a href="javascript:void(0)" class="service-button" onclick="bookService('Fire Alarm Installation')">Discover More</a>
+                    <p class="service-description">Advanced fire alarm systems installed to protect your property and
+                        ensure rapid response in emergencies.</p>
+                    <a href="javascript:void(0)" class="service-button"
+                        onclick="bookService('Fire Alarm Installation')">Discover More</a>
                 </div>
             </div>
             <!-- CCTV Installation -->
@@ -506,8 +547,10 @@
                 <img src="cc tv.jpeg" alt="CCTV Installation">
                 <div class="service-content">
                     <h3 class="service-title">CCTV Installation</h3>
-                    <p class="service-description">High-quality CCTV systems for enhanced security, providing peace of mind for homes and businesses.</p>
-                    <a href="javascript:void(0)" class="service-button" onclick="bookService('CCTV Installation')">Discover More</a>
+                    <p class="service-description">High-quality CCTV systems for enhanced security, providing peace of
+                        mind for homes and businesses.</p>
+                    <a href="javascript:void(0)" class="service-button"
+                        onclick="bookService('CCTV Installation')">Discover More</a>
                 </div>
             </div>
             <!-- Security Alarm Installation -->
@@ -515,8 +558,10 @@
                 <img src="security.jpeg" alt="Security Alarm Installation">
                 <div class="service-content">
                     <h3 class="service-title">Security Alarm Installation</h3>
-                    <p class="service-description">State-of-the-art security alarms to safeguard your property with reliable, round-the-clock protection.</p>
-                    <a href="javascript:void(0)" class="service-button" onclick="bookService('Security Alarm Installation')">Discover More</a>
+                    <p class="service-description">State-of-the-art security alarms to safeguard your property with
+                        reliable, round-the-clock protection.</p>
+                    <a href="javascript:void(0)" class="service-button"
+                        onclick="bookService('Security Alarm Installation')">Discover More</a>
                 </div>
             </div>
             <!-- Emergency light installation -->
@@ -524,8 +569,10 @@
                 <img src="emergeny light.jpeg" alt="Emergency Lights Installation">
                 <div class="service-content">
                     <h3 class="service-title">Emergency Lights Installation & Certifications</h3>
-                    <p class="service-description">Secure access control, intercom, and automatic gate systems for controlled entry and convenience.</p>
-                    <a href="javascript:void(0)" class="service-button" onclick="bookService('Emergency Lights Installation & Certifications')">Discover More</a>
+                    <p class="service-description">Secure access control, intercom, and automatic gate systems for
+                        controlled entry and convenience.</p>
+                    <a href="javascript:void(0)" class="service-button"
+                        onclick="bookService('Emergency Lights Installation & Certifications')">Discover More</a>
                 </div>
             </div>
             <!-- EV Charger Installation -->
@@ -533,8 +580,10 @@
                 <img src="EV.jpeg" alt="EV Charger Installation">
                 <div class="service-content">
                     <h3 class="service-title">EV Charger Installation</h3>
-                    <p class="service-description">Efficient and safe EV charger installations to power your electric vehicles at home or work.</p>
-                    <a href="javascript:void(0)" class="service-button" onclick="bookService('EV Charger Installation')">Discover More</a>
+                    <p class="service-description">Efficient and safe EV charger installations to power your electric
+                        vehicles at home or work.</p>
+                    <a href="javascript:void(0)" class="service-button"
+                        onclick="bookService('EV Charger Installation')">Discover More</a>
                 </div>
             </div>
             <!-- PAT -->
@@ -543,9 +592,11 @@
                 <div class="service-content">
                     <h3 class="service-title">PAT Testing & Certification</h3>
                     <p class="service-description">
-                        Portable Appliance Testing to ensure electrical equipment is safe, compliant, and functioning correctly in all environments.
+                        Portable Appliance Testing to ensure electrical equipment is safe, compliant, and functioning
+                        correctly in all environments.
                     </p>
-                    <a href="javascript:void(0)" class="service-button" onclick="bookService('PAT Testing & Certification')">Discover More</a>
+                    <a href="javascript:void(0)" class="service-button"
+                        onclick="bookService('PAT Testing & Certification')">Discover More</a>
                 </div>
             </div>
             <!-- Heating Controls System Installations -->
@@ -554,15 +605,17 @@
                 <div class="service-content">
                     <h3 class="service-title">Heating Controls System Installations</h3>
                     <p class="service-description">
-                        Professional installation of smart heating controls to improve comfort, energy efficiency, and temperature management in your property.
+                        Professional installation of smart heating controls to improve comfort, energy efficiency, and
+                        temperature management in your property.
                     </p>
-                    <a href="javascript:void(0)" class="service-button" onclick="bookService('Heating Controls System Installations')">Discover More</a>
+                    <a href="javascript:void(0)" class="service-button"
+                        onclick="bookService('Heating Controls System Installations')">Discover More</a>
                 </div>
             </div>
 
         </div>
     </section>
-<!-- Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -591,6 +644,8 @@
                 <div class="footer-section">
                     <h3>Services</h3>
                     <ul>
+                        <li><a href="#">Fault Finding</a></li>
+                        <li><a href="#">PAT Testing & Certification</a></li>
                         <li><a href="#">Domestic Installations</a></li>
                         <li><a href="#">Commercial Installations</a></li>
                         <li><a href="#">Industrial Installations</a></li>
@@ -603,7 +658,7 @@
                     </ul>
 
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>Contact Info</h3>
                     <ul>
@@ -618,8 +673,8 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 M & W Electrical Services Limited. All rights reserved. | Registered in England & Wales |
-                    Company No: 12345678 | VAT No: GB123456789</p>
+               <p>&copy; 2024 M & W Electrical Services Limited. All rights reserved. | Registered since 2023 |
+                    Company No: 14936040 | VAT No: 14936040</p>
             </div>
         </div>
     </footer>
@@ -645,11 +700,11 @@
         });
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init();
-</script>
-<script>
-    // Navbar scroll effect
+    <script>
+        AOS.init();
+    </script>
+    <script>
+        // Navbar scroll effect
         window.addEventListener('scroll', function () {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -694,11 +749,12 @@
         function bookService(serviceName) {
             // Store the selected service in localStorage so it can be accessed on the booking page
             localStorage.setItem('selectedService', serviceName);
-            
+
             // Navigate to the booking page
             window.location.href = 'book.html';
         }
 
-</script>
+    </script>
 </body>
+
 </html>

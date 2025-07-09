@@ -51,8 +51,8 @@
         }
 
         .logo {
-            width: 77px;
-            height: 65px;
+            width: 60px;
+            height: 60px;
         }
 
         .nav-links {
@@ -153,6 +153,20 @@
                 border-bottom: 0.5px solid rgba(207, 207, 207, 0.87);
                 display: block;
             }
+            .nav-links::before {
+            content: '';
+            display: block;
+            width: 140px;
+            height: 70px;
+            background-image: url('./logo3.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            top: 1rem;
+            left: 18%;
+            transform: translateX(-50%);
+        }
         }
 
         /* Main Content Styles */
@@ -478,7 +492,7 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <img src="logo (2).png" alt="logo" class="logo">
+            <img src="logo3.png" alt="logo" class="logo">
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
@@ -597,6 +611,8 @@
                 <div class="footer-section">
                     <h3>Services</h3>
                     <ul>
+                        <li><a href="#">Fault Finding</a></li>
+                        <li><a href="#">PAT Testing & Certification</a></li>
                         <li><a href="#">Domestic Installations</a></li>
                         <li><a href="#">Commercial Installations</a></li>
                         <li><a href="#">Industrial Installations</a></li>
@@ -623,8 +639,8 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 M & W Electrical Services Limited. All rights reserved. | Registered in England & Wales |
-                    Company No: 12345678 | VAT No: GB123456789</p>
+               <p>&copy; 2024 M & W Electrical Services Limited. All rights reserved. | Registered since 2023 |
+                    Company No: 14936040 | VAT No: 14936040</p>
             </div>
         </div>
     </footer>
