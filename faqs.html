@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - M & W Electrical Services</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', -apple-system, Arial, sans-serif;
+            line-height: 1.7;
+            color: #2d3748;
+            background: #f1f5f9;
+            min-height: 100vh;
+        }
+
+       /* Navigation Styles */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        z-index: 1000;
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+        background: #ffffff;
+        padding: 0.5rem 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+    }
+
+    .logo {
+        width: 77px;
+        height: 65px;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: #000000;
+        text-decoration: none;
+        font-weight: 550;
+        font-size: 13px;
+        transition: color 0.3s ease;
+        position: relative;
+    }
+
+    .nav-links a:hover {
+        color: #68d391;
+    }
+
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #000000;
+        transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: #000000;
+        margin: 3px 0;
+        transition: 0.3s;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    @media (max-width:786px) {
+        .hamburger {
+            display: flex;
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 0px;
+            left: -100%;
+            width: 70%;
+            height: 2000px;
+            background: rgb(255, 255, 255);
+            color: black;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 4rem;
+            transition: left 0.5s ease;
+        }
+
+        .nav-links::before {
+            content: '';
+            display: block;
+            width: 140px;
+            height: 70px;
+            background-image: url('./logo\ \(2\).png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            top: 1rem;
+            left: 18%;
+            transform: translateX(-50%);
+        }
+
+        .nav-links.active {
+            left: 0;
+        }
+
+        .nav-links li {
+            position: relative;
+            left: 25px;
+            top: 50px;
+        }
+
+        .nav-links li a {
+            font-size: 1.1rem;
+            padding: 0.3rem 0;
+            font-weight: 600;
+            color: rgb(46, 45, 45);
+            border-bottom: 0.5px solid rgba(207, 207, 207, 0.87);
+            display: block;
+        }
+
+        .nav-links li a:hover {
+            color: rgb(46, 45, 45);
+            text-decoration: none;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: rgb(255, 255, 255);
+            transition: width 0.3s ease;
+        }
+    }
+
+
+        /* FAQs Section */
+        .faqs-section {
+            max-width: 1300px;
+            margin: 120px auto 5rem;
+            padding: 0 2rem;
+        }
+
+        .faqs-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .faqs-header h1 {
+            font-size: 3rem;
+            color: #1a202c;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .faqs-header p {
+            color: #4a5568;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .accordion {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(104, 211, 145, 0.15);
+        }
+
+        .accordion-header {
+            padding: 1.8rem 2rem;
+            cursor: pointer;
+            background: linear-gradient(135deg, #f7fafc, #e6fffa);
+            display: flex;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #e6fffa, #d0f7f3);
+        }
+
+        .accordion-header i {
+            color: #68d391;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            /* transition: transform 0.3s ease; */
+        }
+
+        .accordion-header.active i {
+            transform: rotate(90deg);
+        }
+
+        .accordion-header h3 {
+            font-size: 1.3rem;
+            color: #1a202c;
+            font-weight: 600;
+            flex-grow: 1;
+        }
+
+        .accordion-header span {
+            font-size: 1.8rem;
+            color: #38b2ac;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.active span {
+            transform: rotate(45deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 2rem;
+            background: #ffffff;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+
+        .accordion-content p {
+            padding: 1.5rem 0;
+            color: #4a5568;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .accordion-content.active {
+            max-height: 600px; /* Adjusted for longer content */
+            padding: 1rem 2rem 2rem;
+        }
+
+        /* Call-to-Action Section */
+        .cta-section {
+            text-align: center;
+            margin: 4rem auto;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #68d391, #38b2ac);
+            border-radius: 12px;
+            max-width: 900px;
+            color: #ffffff;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #ffffff;
+            color: #1a202c;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #e6fffa;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: #fff;
+            padding: 5rem 0 2rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(104,211,145,0.1)" fill-opacity="1" d="M0,192L48,181.3C96,171,192,149,288,144C384,139,480,149,576,181.3C672,213,768,267,864,266.7C960,267,1056,213,1152,181.3C1248,149,1344,139,1392,134.7L1440,131L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .footer .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            color: #68d391;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul li a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: #68d391;
+            padding-left: 8px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #68d391, #38b2ac);
+            color: #1a202c;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, #81e6d9, #4fd1c7);
+            transform: translateY(-5px) rotate(8deg);
+            box-shadow: 0 12px 20px rgba(104, 211, 145, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 2px solid rgba(104, 211, 145, 0.2);
+            margin-top: 4rem;
+            color: #cbd5e0;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 786px) {
+            .faqs-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .faqs-header p {
+                font-size: 1rem;
+            }
+
+            .accordion-header h3 {
+                font-size: 1.1rem;
+            }
+
+            .accordion-content p {
+                font-size: 0.9rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.6rem;
+            }
+
+            .cta-section p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <img src="logo (2).png" alt="logo" class="logo">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="book.html">Book Online</a></li>
+                <li><a href="faqs.html">FAQs</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FAQs Section -->
+    <section class="faqs-section" data-aos="zoom-in">
+        <div class="faqs-header">
+            <h1 data-aos="zoom-in">Frequently Asked Questions</h1>
+            <p data-aos="zoom-in">Explore answers to common queries about our professional electrical services, pricing, safety standards, and more.</p>
+        </div>
+
+        <div class="accordion">
+            <div class="accordion-item" data-aos="zoom-in">
+                <div class="accordion-header">
+                    <i class="fas fa-plug"></i>
+                    <h3>What types of electrical services do you offer?</h3>
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>We provide comprehensive electrical services, including installations, repairs, full rewiring, energy-efficient lighting solutions, safety inspections, and commercial electrical projects. We also specialize in smart home integrations and EV charging station installations.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-aos="zoom-in">
+                <div class="accordion-header">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Are your electricians certified and insured?</h3>
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Absolutely. Our electricians are NICEIC-certified, TrustMark-accredited, and fully insured. We adhere to BS 7671 wiring regulations and ensure all work meets UK safety standards.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-aos="zoom-in">
+                <div class="accordion-header">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Do you offer 24/7 emergency services?</h3>
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, we provide round-the-clock emergency electrical services. Call 0800 123 4567 for immediate assistance with power outages, exposed wiring, or other urgent issues.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-aos="zoom-in">
+                <div class="accordion-header">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>How do I book a service appointment?</h3>
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>You can book online via our website’s booking portal or call us at 0800 123 4567. We offer flexible scheduling, including same-day appointments when available, and provide transparent quotes upfront.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-aos="zoom-in">
+                <div class="accordion-header">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>What areas do you cover?</h3>
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>We serve clients across the UK, with our headquarters in Manchester. Our team operates in major cities and surrounding areas. Contact us to confirm service availability in your location.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-aos="zoom-in">
+                <div class="accordion-header">
+                    <i class="fas fa-clock"></i>
+                    <h3>How long does an electrical project typically take?</h3>
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Timelines depend on project complexity. Minor repairs take a few hours, while rewiring a home may take 3–7 days. Commercial projects vary widely. We provide detailed timelines during our initial assessment.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-aos="zoom-in">
+                <div class="accordion-header">
+                    <i class="fas fa-pound-sign"></i>
+                    <h3>How is pricing determined?</h3>
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Pricing is based on project scope, materials, labor, and complexity. We offer free, no-obligation quotes after an on-site or virtual consultation. Transparent pricing with no hidden fees is our guarantee.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-aos="zoom-in">
+                <div class="accordion-header">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Do you provide warranties for your work?</h3>
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, we offer a 12-month warranty on labor and up to 5 years on select installations, depending on the project. Manufacturer warranties apply to materials, and we provide full documentation.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-aos="zoom-in">
+                <div class="accordion-header">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Can you install energy-efficient solutions?</h3>
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>We specialize in energy-efficient solutions, including LED lighting, smart thermostats, and solar panel integrations. These options reduce energy costs and environmental impact. Ask about our eco-friendly packages.</p>
+                </div>
+            </div>
+            <div class="accordion-item" data-aos="zoom-in">
+                <div class="accordion-header">
+                    <i class="fas fa-tools"></i>
+                    <h3>What should I do to prepare for your visit?</h3>
+                    <span>+</span>
+                </div>
+                <div class="accordion-content">
+                    <p>Clear the work area of furniture or obstacles, ensure access to electrical panels, and inform us of any specific issues. For safety, keep pets and children away from the work zone during our visit.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call-to-Action -->
+        <div class="cta-section" data-aos="zoom-in">
+            <h2 data-aos="zoom-in">Still Have Questions?</h2>
+            <p data-aos="zoom-in">Contact our team for personalized assistance or to schedule a consultation.</p>
+            <a href="index.html#contact" class="cta-button" data-aos="zoom-in">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>M & W ELECTRICAL SERVICES LIMITED</h3>
+                    <p>Your trusted electrical partner across the UK. Professional, reliable, and fully certified
+                        electrical services for all your needs.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">f</a>
+                        <a href="#" title="Twitter">t</a>
+                        <a href="#" title="Instagram">i</a>
+                        <a href="#" title="LinkedIn">in</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="book.html">Book Online</a></li>
+                        <li><a href="faqs.html">FAQ's</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Domestic Installations</a></li>
+                        <li><a href="#">Commercial Installations</a></li>
+                        <li><a href="#">Industrial Installations</a></li>
+                        <li><a href="#">Certification</a></li>
+                        <li><a href="#">Fire Alarm Installation</a></li>
+                        <li><a href="#">CCTV Installation</a></li>
+                        <li><a href="#">Security Alarm Installation</a></li>
+                        <li><a href="#">Access Control, Intercom & Automatic Gate Installation</a></li>
+                        <li><a href="#">EV Charger Installation</a></li>
+                    </ul>
+
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>📞 07854938550</li>
+                        <li>📧 mw.electricals@live.co.uk</li>
+                        <li>📍 49 Bitterne Drive,
+                            Woking, Surrey
+                            GU21 3JX
+                            United Kingdom</li>
+                        <li>🕒 24/7 Emergency Service</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 M & W Electrical Services Limited. All rights reserved. | Registered in England & Wales |
+                    Company No: 12345678 | VAT No: GB123456789</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // Navigation functionality
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', function () {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function () {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function () {
+                const content = this.nextElementSibling;
+                const isActive = content.classList.contains('active');
+
+                // Close all other accordion items
+                document.querySelectorAll('.accordion-content').forEach(item => {
+                    item.classList.remove('active');
+                    item.style.maxHeight = null;
+                    item.previousElementSibling.classList.remove('active');
+                    item.previousElementSibling.querySelector('span').textContent = '+';
+                });
+
+                // Toggle the clicked accordion item
+                if (!isActive) {
+                    content.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    this.classList.add('active');
+                    this.querySelector('span').textContent = '−';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

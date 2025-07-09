@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Service - M & W Electrical Services</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        overflow-x: hidden;
+        background-color: #f8f9fa;
+    }
+
+    /* Navigation Styles */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        z-index: 1000;
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+        background: #ffffff;
+        padding: 0.5rem 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+    }
+
+    .logo {
+        width: 77px;
+        height: 65px;
+    }
+
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: #000000;
+        text-decoration: none;
+        font-weight: 550;
+        font-size: 13px;
+        transition: color 0.3s ease;
+        position: relative;
+    }
+
+    .nav-links a:hover {
+        color: #68d391;
+    }
+
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #000000;
+        transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: #000000;
+        margin: 3px 0;
+        transition: 0.3s;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    @media (max-width:786px) {
+        .hamburger {
+            display: flex;
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 0px;
+            left: -100%;
+            width: 70%;
+            height: 2000px;
+            background: rgb(255, 255, 255);
+            color: black;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 4rem;
+            transition: left 0.5s ease;
+        }
+
+        .nav-links::before {
+            content: '';
+            display: block;
+            width: 140px;
+            height: 70px;
+            background-image: url('./logo\ \(2\).png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            top: 1rem;
+            left: 18%;
+            transform: translateX(-50%);
+        }
+
+        .nav-links.active {
+            left: 0;
+        }
+
+        .nav-links li {
+            position: relative;
+            left: 25px;
+            top: 50px;
+        }
+
+        .nav-links li a {
+            font-size: 1.1rem;
+            padding: 0.3rem 0;
+            font-weight: 600;
+            color: rgb(46, 45, 45);
+            border-bottom: 0.5px solid rgba(207, 207, 207, 0.87);
+            display: block;
+        }
+
+        .nav-links li a:hover {
+            color: rgb(46, 45, 45);
+            text-decoration: none;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: rgb(255, 255, 255);
+            transition: width 0.3s ease;
+        }
+    }
+
+    /* Main Content */
+    .main-content {
+        margin-top: 100px;
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .page-title {
+        text-align: center;
+        font-size: 36px;
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    .page-title::after {
+        content: '';
+        width: 80px;
+        height: 4px;
+        background-color: #3498db;
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .booking-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 60px;
+    }
+
+    .service-info {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        height: fit-content;
+    }
+
+    .service-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 20px;
+    }
+
+    .service-title {
+        font-size: 28px;
+        color: #2c3e50;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .service-description {
+        font-size: 16px;
+        color: #7f8c8d;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .service-features {
+        list-style: none;
+        margin-bottom: 20px;
+    }
+
+    .service-features li {
+        padding: 8px 0;
+        border-bottom: 1px solid #ecf0f1;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .service-features li:before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #3498db;
+        font-weight: bold;
+    }
+
+    .booking-form {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 40px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .booking-form::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #3498db, #2980b9, #68d391);
+    }
+
+    .form-title {
+        font-size: 28px;
+        color: #2c3e50;
+        margin-bottom: 30px;
+        text-align: center;
+        position: relative;
+        font-weight: 700;
+    }
+
+    .form-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #3498db, #68d391);
+        border-radius: 2px;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+        position: relative;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        font-size: 15px;
+        transition: color 0.3s ease;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 15px 18px;
+        border: 2px solid #e8ecf0;
+        border-radius: 12px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        background: #fafbfc;
+        color: #2c3e50;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #3498db;
+        background: #ffffff;
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        transform: translateY(-1px);
+    }
+
+    .form-group input:focus+label,
+    .form-group select:focus+label,
+    .form-group textarea:focus+label {
+        color: #3498db;
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 110px;
+        font-family: inherit;
+        line-height: 1.6;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 18px 20px;
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        color: #ffffff;
+        border: none;
+        border-radius: 12px;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        margin-top: 25px;
+        position: relative;
+        overflow: hidden;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .submit-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .submit-btn:hover::before {
+        left: 100%;
+    }
+
+    .submit-btn:hover {
+        background: linear-gradient(135deg, #2980b9, #1c5a85);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(52, 152, 219, 0.4);
+    }
+
+    .submit-btn:active {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
+    }
+
+    .emergency-notice {
+        background: #ffe6e6;
+        border: 2px solid #ff6b6b;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .emergency-notice h4 {
+        color: #e74c3c;
+        margin-bottom: 5px;
+    }
+
+    .emergency-notice p {
+        color: #c0392b;
+        font-weight: 500;
+    }
+
+    /* Footer */
+    .footer {
+        background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        color: #fff;
+        padding: 4rem 0 2rem;
+        position: relative;
+        margin-top: 60px;
+    }
+
+    .footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.1;
+        z-index: 0;
+    }
+
+    .footer .container {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .footer-section h3 {
+        color: #68d391;
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+    }
+
+    .footer-section ul {
+        list-style: none;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 0.8rem;
+    }
+
+    .footer-section ul li a {
+        color: #cbd5e0;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .footer-section ul li a:hover {
+        color: #68d391;
+        padding-left: 5px;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .social-links a {
+        display: inline-block;
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, #68d391, #38b2ac);
+        color: #1a202c;
+        text-align: center;
+        line-height: 45px;
+        border-radius: 50%;
+        transition: all 0.4s ease;
+        font-weight: bold;
+    }
+
+    .social-links a:hover {
+        background: linear-gradient(135deg, #81e6d9, #4fd1c7);
+        transform: translateY(-3px) rotate(5deg);
+        box-shadow: 0 10px 20px rgba(104, 211, 145, 0.3);
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 2px solid rgba(104, 211, 145, 0.3);
+        margin-top: 3rem;
+        color: #cbd5e0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .booking-container {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+
+        .page-title {
+            font-size: 28px;
+        }
+
+        .service-title {
+            font-size: 24px;
+        }
+
+        .main-content {
+            padding: 20px 15px;
+        }
+    }
+
+    /* Success Message Popup */
+    .success-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        backdrop-filter: blur(5px);
+    }
+
+    .success-overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .success-message {
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+        position: relative;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        transform: scale(0.7) translateY(50px);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .success-overlay.show .success-message {
+        transform: scale(1) translateY(0);
+    }
+
+    .success-message::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: linear-gradient(90deg, #27ae60, #2ecc71, #58d68d);
+        border-radius: 20px 20px 0 0;
+    }
+
+    .success-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #27ae60, #2ecc71);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        animation: checkmark 0.6s ease-in-out 0.5s both;
+    }
+
+    .success-icon::after {
+        content: '✓';
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    @keyframes checkmark {
+        0% {
+            transform: scale(0) rotate(180deg);
+        }
+
+        100% {
+            transform: scale(1) rotate(0deg);
+        }
+    }
+
+    .success-message h4 {
+        color: #27ae60;
+        margin-bottom: 15px;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .success-message p {
+        color: #2c3e50;
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+
+    .progress-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #27ae60, #2ecc71);
+        border-radius: 0 0 0 20px;
+        animation: progressBar 3s linear;
+    }
+
+    @keyframes progressBar {
+        0% {
+            width: 100%;
+        }
+
+        100% {
+            width: 0%;
+        }
+    }
+
+    .whatsapp-button {
+        position: fixed;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #25D366;
+        border-radius: 50%;
+        padding: 15px;
+        z-index: 9999;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+    }
+
+    .whatsapp-button:hover {
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .whatsapp-button img {
+        width: 28px;
+        height: 28px;
+        display: block;
+    }
+
+    .scroll-to-top {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: #00c292;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 9999;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        animation: pulse 2s infinite;
+        display: none;
+        /* Hidden by default */
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .scroll-to-top i {
+        pointer-events: none;
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(0, 194, 146, 0.7);
+        }
+
+        70% {
+            box-shadow: 0 0 0 15px rgba(0, 194, 146, 0);
+        }
+
+        100% {
+            box-shadow: 0 0 0 0 rgba(0, 194, 146, 0);
+        }
+    }
+</style>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <img src="logo (2).png" alt="logo" class="logo">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="book.html">Book Online</a></li>
+                <li><a href="faqs.html">FAQ's</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+  <!-- Main Content -->
+<div class="main-content">
+    <h1 class="page-title" data-aos="zoom-in">Book Your Service</h1>
+
+    <div class="booking-container">
+        <!-- Service Information -->
+        <div class="service-info" data-aos="fade-right">
+            <img id="serviceImage" src="domestic.jpeg" alt="Service Image" class="service-image" data-aos="zoom-in">
+            <h2 id="serviceTitle" class="service-title" data-aos="zoom-in">Domestic Installations</h2>
+            <p id="serviceDescription" class="service-description" data-aos="zoom-in">
+                Expert electrical installations for flats, houses, and apartments, ensuring safety and efficiency
+                for your home.
+            </p>
+            <ul class="service-features">
+                <li data-aos="zoom-in">Professional installation by certified electricians</li>
+                <li data-aos="zoom-in">Compliance with all UK electrical regulations</li>
+                <li data-aos="zoom-in">Full testing and certification included</li>
+                <li data-aos="zoom-in">12-month warranty on all work</li>
+                <li data-aos="zoom-in">24/7 emergency support available</li>
+            </ul>
+        </div>
+
+        <!-- Booking Form -->
+        <div class="booking-form" data-aos="fade-left">
+            <div class="emergency-notice" data-aos="zoom-in">
+                <h4>Emergency Service Available</h4>
+                <p>For urgent electrical issues, call: <strong>07854938550</strong></p>
+            </div>
+
+            <h3 class="form-title" data-aos="zoom-in">Book Your Appointment</h3>
+            <form id="bookingForm" data-aos="zoom-in">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="postcode">Postcode *</label>
+                        <input type="text" id="postcode" name="postcode" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Full Address *</label>
+                    <textarea id="address" name="address" required
+                        placeholder="Enter your full address..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="serviceType">Service Required *</label>
+                    <select id="serviceType" name="serviceType" required>
+                        <option value="">Select a service...</option>
+                        <option value="Domestic Installations">Domestic Installations</option>
+                        <option value="Commercial Installations">Commercial Installations</option>
+                        <option value="Industrial Installations">Industrial Installations</option>
+                        <option value="Electrical Installation Condition Report">Electrical Installation Condition
+                            Report</option>
+                        <option value="Fire Alarm Installation">Fire Alarm Installation</option>
+                        <option value="CCTV Installation">CCTV Installation</option>
+                        <option value="Security Alarm Installation">Security Alarm Installation</option>
+                        <option value="Emergency Lights Installation & Certifications">Emergency Lights Installation
+                            & Certifications</option>
+                        <option value="EV Charger Installation">EV Charger Installation</option>
+                        <option value="PAT Testing & Certification">PAT Testing & Certification</option>
+                        <option value="Heating Controls System Installations">Heating Controls System Installations
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="preferredDate">Preferred Date *</label>
+                        <input type="date" id="preferredDate" name="preferredDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferredTime">Preferred Time *</label>
+                        <select id="preferredTime" name="preferredTime" required>
+                            <option value="">Select time...</option>
+                            <option value="Morning (9:00 AM - 12:00 PM)">Morning (9:00 AM - 12:00 PM)</option>
+                            <option value="Afternoon (12:00 PM - 5:00 PM)">Afternoon (12:00 PM - 5:00 PM)</option>
+                            <option value="Evening (5:00 PM - 8:00 PM)">Evening (5:00 PM - 8:00 PM)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="priority">Priority Level</label>
+                    <select id="priority" name="priority">
+                        <option value="Standard">Standard</option>
+                        <option value="Urgent">Urgent (within 48 hours)</option>
+                        <option value="Emergency">Emergency (same day)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="details">Additional Details</label>
+                    <textarea id="details" name="details"
+                        placeholder="Please provide any additional information about your electrical requirements..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Book Appointment</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Success Message Popup -->
+<div class="success-overlay" id="successOverlay">
+    <div class="success-message" id="successMessage">
+        <div class="success-icon"></div>
+        <h4>Booking Submitted Successfully!</h4>
+        <p>Thank you for your booking. We will contact you soon to confirm your appointment.</p>
+        <div class="progress-bar"></div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('bookingForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Collect form data
+        const formData = new FormData(this);
+        const firstName = formData.get('firstName');
+        const lastName = formData.get('lastName');
+        const email = formData.get('email');
+        const phone = formData.get('phone');
+        const postcode = formData.get('postcode');
+        const address = formData.get('address');
+        const serviceType = formData.get('serviceType');
+        const preferredDate = formData.get('preferredDate');
+        const preferredTime = formData.get('preferredTime');
+        const priority = formData.get('priority');
+        const details = formData.get('details');
+
+        // Construct WhatsApp message
+        const message = `
+*New Booking Submission*
+First Name: ${firstName}
+Last Name: ${lastName}
+Email: ${email}
+Phone: ${phone}
+Postcode: ${postcode}
+Address: ${address}
+Service Required: ${serviceType}
+Preferred Date: ${preferredDate}
+Preferred Time: ${preferredTime}
+Priority: ${priority}
+Additional Details: ${details || 'None'}
+        `.trim();
+
+        // Encode message for URL
+        const encodedMessage = encodeURIComponent(message);
+        const phoneNumber = '447854938550'; // Replace with your business WhatsApp number (without +)
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+        // Open WhatsApp with pre-filled message
+        window.open(whatsappUrl, '_blank');
+
+        // Show success popup
+        const successOverlay = document.getElementById('successOverlay');
+        successOverlay.style.display = 'flex';
+        setTimeout(() => {
+            successOverlay.style.display = 'none';
+            this.reset(); // Reset form after submission
+        }, 3000); // Hide popup after 3 seconds
+    });
+</script>
+
+<style>
+    /* Ensure success popup is styled for visibility */
+    .success-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .success-message {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+    }
+
+    .success-icon {
+        width: 50px;
+        height: 50px;
+        background: url('https://img.icons8.com/color/48/000000/checked--v1.png') no-repeat center;
+        background-size: contain;
+        margin: 0 auto 10px;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 5px;
+        background: #28a745;
+        animation: progress 3s linear forwards;
+    }
+
+    @keyframes progress {
+        from { width: 100%; }
+        to { width: 0%; }
+    }
+</style>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>M & W ELECTRICAL SERVICES LIMITED</h3>
+                    <p>Your trusted electrical partner across the UK. Professional, reliable, and fully certified
+                        electrical services for all your needs.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">f</a>
+                        <a href="#" title="Twitter">t</a>
+                        <a href="#" title="Instagram">i</a>
+                        <a href="#" title="LinkedIn">in</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="book.html">Book Online</a></li>
+                        <li><a href="faqs.html">FAQ's</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Domestic Installations</a></li>
+                        <li><a href="#">Commercial Installations</a></li>
+                        <li><a href="#">Industrial Installations</a></li>
+                        <li><a href="#">Certification</a></li>
+                        <li><a href="#">Fire Alarm Installation</a></li>
+                        <li><a href="#">CCTV Installation</a></li>
+                        <li><a href="#">Security Alarm Installation</a></li>
+                        <li><a href="#">Access Control, Intercom & Automatic Gate Installation</a></li>
+                        <li><a href="#">EV Charger Installation</a></li>
+                    </ul>
+
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>📞 07854938550</li>
+                        <li>📧 mw.electricals@live.co.uk</li>
+                        <li>📍 49 Bitterne Drive,
+                            Woking, Surrey
+                            GU21 3JX
+                            United Kingdom</li>
+                        <li>🕒 24/7 Emergency Service</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 M & W Electrical Services Limited. All rights reserved. | Registered in England & Wales |
+                    Company No: 12345678 | VAT No: GB123456789</p>
+            </div>
+        </div>
+    </footer>
+    <a href="https://wa.me/07854938550" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp--v1.png" alt="WhatsApp Icon" />
+    </a>
+    <button class="scroll-to-top" onclick="scrollToTop()" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up-long"></i>
+    </button>
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show the button only when scrolled down
+        window.addEventListener('scroll', function () {
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (window.scrollY > 300) {
+                scrollButton.style.display = 'flex';
+            } else {
+                scrollButton.style.display = 'none';
+            }
+        });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // Service information mapping
+        const serviceInfo = {
+            'Domestic Installations': {
+                image: 'domestic.jpeg',
+                description: 'Expert electrical installations for flats, houses, and apartments, ensuring safety and efficiency for your home.'
+            },
+            'Commercial Installations': {
+                image: 'commercial.jpeg',
+                description: 'Tailored electrical solutions for shops, restaurants, hotels, and offices, designed for reliability and performance.'
+            },
+            'Industrial Installations': {
+                image: 'industrial.jpeg',
+                description: 'Robust electrical systems for factories and industrial facilities, built to handle high-demand environments.'
+            },
+            'Electrical Installation Condition Report': {
+                image: 'electric condition repoert.jpeg',
+                description: 'Comprehensive inspection of your property\'s wiring and systems to detect faults, damage, or safety issues as per regulations.'
+            },
+            'Fire Alarm Installation': {
+                image: 'fire alarm.jpeg',
+                description: 'Advanced fire alarm systems installed to protect your property and ensure rapid response in emergencies.'
+            },
+            'CCTV Installation': {
+                image: 'cc tv.jpeg',
+                description: 'High-quality CCTV systems for enhanced security, providing peace of mind for homes and businesses.'
+            },
+            'Security Alarm Installation': {
+                image: 'security.jpeg',
+                description: 'State-of-the-art security alarms to safeguard your property with reliable, round-the-clock protection.'
+            },
+            'Emergency Lights Installation & Certifications': {
+                image: 'emergeny light.jpeg',
+                description: 'Professional emergency lighting systems installation and certification to ensure safety compliance.'
+            },
+            'EV Charger Installation': {
+                image: 'EV.jpeg',
+                description: 'Efficient and safe EV charger installations to power your electric vehicles at home or work.'
+            },
+            'PAT Testing & Certification': {
+                image: 'Pat.jpeg',
+                description: 'Portable Appliance Testing to ensure electrical equipment is safe, compliant, and functioning correctly in all environments.'
+            },
+            'Heating Controls System Installations': {
+                image: 'heating.jpeg',
+                description: 'Professional installation of smart heating controls to improve comfort, energy efficiency, and temperature management in your property.'
+            }
+        };
+
+        // Load selected service on page load
+        window.addEventListener('load', function () {
+            const selectedService = localStorage.getItem('selectedService');
+            if (selectedService && serviceInfo[selectedService]) {
+                document.getElementById('serviceTitle').textContent = selectedService;
+                document.getElementById('serviceImage').src = serviceInfo[selectedService].image;
+                document.getElementById('serviceImage').alt = selectedService;
+                document.getElementById('serviceDescription').textContent = serviceInfo[selectedService].description;
+                document.getElementById('serviceType').value = selectedService;
+            }
+        });
+
+        // Set minimum date to today
+        document.getElementById('preferredDate').min = new Date().toISOString().split('T')[0];
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', function () {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function () {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Show success popup
+            const successOverlay = document.getElementById('successOverlay');
+            successOverlay.classList.add('show');
+
+            // Reset form
+            this.reset();
+
+            // Hide success message after 3 seconds
+            setTimeout(() => {
+                successOverlay.classList.remove('show');
+            }, 3000);
+        });
+
+        // Update service when dropdown changes
+        document.getElementById('serviceType').addEventListener('change', function () {
+            const selectedService = this.value;
+            if (selectedService && serviceInfo[selectedService]) {
+                document.getElementById('serviceTitle').textContent = selectedService;
+                document.getElementById('serviceImage').src = serviceInfo[selectedService].image;
+                document.getElementById('serviceImage').alt = selectedService;
+                document.getElementById('serviceDescription').textContent = serviceInfo[selectedService].description;
+            }
+        });
+    </script>
+</body>
+
+</html>

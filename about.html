@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - M & W Electrical Services</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+            min-height: 100vh;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: #ffffff;
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            width: 77px;
+            height: 65px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 550;
+            font-size: 13px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #68d391;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #000000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #000000;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        @media (max-width: 786px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0px;
+                left: -100%;
+                width: 70%;
+                height: 2000px;
+                background: rgb(255, 255, 255);
+                color: black;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 4rem;
+                transition: left 0.5s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                position: relative;
+                left: 25px;
+                top: 50px;
+            }
+
+            .nav-links li a {
+                font-size: 1.1rem;
+                padding: 0.3rem 0;
+                font-weight: 600;
+                color: rgb(46, 45, 45);
+                border-bottom: 0.5px solid rgba(207, 207, 207, 0.87);
+                display: block;
+            }
+        }
+
+        /* Main Content Styles */
+        .about-section {
+            max-width: 1200px;
+            margin: 100px auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-header h1 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .about-header p {
+            color: #4a5568;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .about-card {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-card img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .about-card h3 {
+            color: #2d3748;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-card p {
+            color: #4a5568;
+        }
+
+        .team-section {
+            margin: 4rem 0;
+        }
+
+        .team-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #2d3748;
+            margin-bottom: 2rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 3px solid #68d391;
+        }
+
+        .team-member h4 {
+            color: #2d3748;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+
+        .values-section {
+            background: rgba(24, 73, 236, 0.534);
+            padding: 3rem;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .values-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .value-item {
+            padding: 1rem;
+        }
+
+        .value-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: #fff;
+            padding: 4rem 0 2rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .footer .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-left: 15px;
+        }
+
+        .footer-section h3 {
+            color: #68d391;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer-section ul li a:hover {
+            color: #68d391;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #68d391, #38b2ac);
+            color: #1a202c;
+            text-align: center;
+            line-height: 45px;
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            font-weight: bold;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, #81e6d9, #4fd1c7);
+            transform: translateY(-3px) rotate(5deg);
+            box-shadow: 0 10px 20px rgba(104, 211, 145, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(104, 211, 145, 0.3);
+            margin-top: 3rem;
+            color: #cbd5e0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 786px) {
+            .about-header h1 {
+                font-size: 2rem;
+            }
+
+            .about-card,
+            .team-member {
+                padding: 1.5rem;
+            }
+
+            .values-section {
+                padding: 2rem;
+            }
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #25D366;
+            border-radius: 50%;
+            padding: 15px;
+            z-index: 9999;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .whatsapp-button img {
+            width: 28px;
+            height: 28px;
+            display: block;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #00c292;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+            display: none;
+            /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .scroll-to-top i {
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 194, 146, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 194, 146, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 194, 146, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <img src="logo (2).png" alt="logo" class="logo">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="book.html">Book Online</a></li>
+                <li><a href="faqs.html">FAQ's</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="about-section" data-aos="fade-up">
+        <div class="about-header">
+            <h1>About M & W Electrical Services</h1>
+            <p>With over 20 years of experience, we are your trusted partner for professional electrical solutions
+                across the UK.</p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-card" data-aos="zoom-in" data-aos-delay="100">
+                <img src="banner.jpeg" alt="Our History" height="20">
+                <h3>Our History</h3>
+                <p>Founded in 2003, M & W Electrical Services started as a small family business in Manchester. Today,
+                    we are a leading electrical service provider with a team of certified professionals serving clients
+                    nationwide.</p>
+            </div>
+            <div class="about-card" data-aos="zoom-in" data-aos-delay="200">
+                <img src="mission.webp" alt="Our Mission">
+                <h3>Our Mission</h3>
+                <p>We are committed to delivering safe, reliable, and innovative electrical solutions that exceed our
+                    clients' expectations while maintaining the highest standards of quality and professionalism.</p>
+            </div>
+            <div class="about-card" data-aos="zoom-in" data-aos-delay="300">
+                <img src="cert.avif" alt="Certifications">
+                <h3>Certifications</h3>
+                <p>Our team is fully certified by NICEIC and accredited by TrustMark, ensuring compliance with UK
+                    electrical standards and regulations for every project we undertake.</p>
+            </div>
+        </div>
+
+        <div class="team-section" data-aos="zoom-in">
+            <h2>Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="team1.jpg" alt="John Smith">
+                    <h4>John Smith</h4>
+                    <p>Lead Electrician with 15 years of experience in commercial and residential installations.</p>
+                </div>
+                <div class="team-member" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="team2.jpg" alt="Emma Wilson">
+                    <h4>Emma Wilson</h4>
+                    <p>Project Manager specializing in large-scale electrical projects and safety compliance.</p>
+                </div>
+                <div class="team-member" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="team3.jpg" alt="Michael Brown">
+                    <h4>Michael Brown</h4>
+                    <p>Senior Technician with expertise in advanced lighting solutions and smart home systems.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="values-section" data-aos="zoom-in">
+            <h2>Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <h3>Safety First</h3>
+                    <p>We prioritize safety in every project, adhering to strict regulations and best practices.</p>
+                </div>
+                <div class="value-item">
+                    <h3>Quality Craftsmanship</h3>
+                    <p>Every job is completed with precision and attention to detail, ensuring lasting results.</p>
+                </div>
+                <div class="value-item">
+                    <h3>Customer Satisfaction</h3>
+                    <p>We strive to exceed expectations with exceptional service and clear communication.</p>
+                </div>
+                <div class="value-item">
+                    <h3>Innovation</h3>
+                    <p>We embrace the latest technologies to provide efficient and modern electrical solutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>M & W ELECTRICAL SERVICES LIMITED</h3>
+                    <p>Your trusted electrical partner across the UK. Professional, reliable, and fully certified
+                        electrical services for all your needs.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">f</a>
+                        <a href="#" title="Twitter">t</a>
+                        <a href="#" title="Instagram">i</a>
+                        <a href="#" title="LinkedIn">in</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="book.html">Book Online</a></li>
+                        <li><a href="faqs.html">FAQ's</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Domestic Installations</a></li>
+                        <li><a href="#">Commercial Installations</a></li>
+                        <li><a href="#">Industrial Installations</a></li>
+                        <li><a href="#">Certification</a></li>
+                        <li><a href="#">Fire Alarm Installation</a></li>
+                        <li><a href="#">CCTV Installation</a></li>
+                        <li><a href="#">Security Alarm Installation</a></li>
+                        <li><a href="#">Access Control, Intercom & Automatic Gate Installation</a></li>
+                        <li><a href="#">EV Charger Installation</a></li>
+                    </ul>
+
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>📞 07854938550</li>
+                        <li>📧 mw.electricals@live.co.uk</li>
+                        <li>📍 49 Bitterne Drive,
+                            Woking, Surrey
+                            GU21 3JX
+                            United Kingdom</li>
+                        <li>🕒 24/7 Emergency Service</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 M & W Electrical Services Limited. All rights reserved. | Registered in England & Wales |
+                    Company No: 12345678 | VAT No: GB123456789</p>
+            </div>
+        </div>
+    </footer>
+    <a href="https://wa.me/07854938550" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp--v1.png" alt="WhatsApp Icon" />
+    </a>
+    <button class="scroll-to-top" onclick="scrollToTop()" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up-long"></i>
+    </button>
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show the button only when scrolled down
+        window.addEventListener('scroll', function () {
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (window.scrollY > 300) {
+                scrollButton.style.display = 'flex';
+            } else {
+                scrollButton.style.display = 'none';
+            }
+        });
+    </script>s
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // Navigation functionality
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', function () {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function () {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
