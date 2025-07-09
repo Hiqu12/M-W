@@ -894,14 +894,13 @@
         const serviceType = formData.get('serviceType');
         const preferredDate = formData.get('preferredDate');
         const preferredTime = formData.get('preferredTime');
-        const priority = formData.get('priority');
-        const details = formData.get('details');
+        const priority = formData.get('priority') || 'Not specified';
+        const details = formData.get('details') || 'None';
 
         // Construct WhatsApp message
         const message = `
 *New Booking Submission*
-First Name: ${firstName}
-Last Name: ${lastName}
+Name: ${firstName} ${lastName}
 Email: ${email}
 Phone: ${phone}
 Postcode: ${postcode}
@@ -910,12 +909,12 @@ Service Required: ${serviceType}
 Preferred Date: ${preferredDate}
 Preferred Time: ${preferredTime}
 Priority: ${priority}
-Additional Details: ${details || 'None'}
+Additional Details: ${details}
         `.trim();
 
         // Encode message for URL
         const encodedMessage = encodeURIComponent(message);
-        const phoneNumber = '447854938550'; // Replace with your business WhatsApp number (without +)
+        const phoneNumber = '447854938550'; // Business WhatsApp number (without +)
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
         // Open WhatsApp with pre-filled message
@@ -1036,7 +1035,7 @@ Additional Details: ${details || 'None'}
             </div>
         </div>
     </footer>
-    <a href="https://wa.me/07854938550" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/4407854938550" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
         <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp--v1.png" alt="WhatsApp Icon" />
     </a>
     <button class="scroll-to-top" onclick="scrollToTop()" aria-label="Scroll to top">

@@ -467,6 +467,68 @@
                 font-size: 1rem;
             }
         }
+        .whatsapp-button {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #25D366;
+            border-radius: 50%;
+            padding: 15px;
+            z-index: 9999;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .whatsapp-button img {
+            width: 28px;
+            height: 28px;
+            display: block;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #00c292;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+            display: none;
+            /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .scroll-to-top i {
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 194, 146, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 194, 146, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 194, 146, 0);
+            }
+        }
     </style>
 </head>
 <body>
@@ -668,6 +730,27 @@
             </div>
         </div>
     </footer>
+    <a href="https://wa.me/4407854938550" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp--v1.png" alt="WhatsApp Icon" />
+    </a>
+    <button class="scroll-to-top" onclick="scrollToTop()" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up-long"></i>
+    </button>
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show the button only when scrolled down
+        window.addEventListener('scroll', function () {
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (window.scrollY > 300) {
+                scrollButton.style.display = 'flex';
+            } else {
+                scrollButton.style.display = 'none';
+            }
+        });
+    </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
